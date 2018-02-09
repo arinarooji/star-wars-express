@@ -54,15 +54,18 @@
       </div>
     </div>
   </div>
-
+  <!-- Internal Javascript-->
   <script type="text/javascript">
+
+    //Click event listener
     $("#search-btn").on("click", function() {
       var searchedCharacter = $("#character-search").val().trim();
-
       searchedCharacter = searchedCharacter.replace(/\s+/g, "").toLowerCase();
 
+      //AJAX GET request: /api/ route with character parameter, callback()
       $.get("/api/" + searchedCharacter, function(data) {
-        console.log(data);
+        console.log(data); //Log response data
+        //If data was retrieved, update DOM with specified object properties
         if (data) {
           $("#stats").show();
           $("#name").text(data.name);
@@ -70,6 +73,7 @@
           $("#age").text(data.age);
           $("#force-points").text(data.forcePoints);
         }
+        //Else, no data was retrieved
         else {
           $("#name").text("The force is not strong with this one. Your character was not found.");
           $("#stats").hide();
