@@ -62,9 +62,12 @@
   </div>
 
   <script type="text/javascript">
-    // Question: What does this code do?
+    
+    //Click event listener
     $("#add-btn").on("click", function(event) {
-      event.preventDefault();
+      event.preventDefault(); //Prevent submit default
+
+      //Create a new character object with the input values from DOM
       var newCharacter = {
         name: $("#name").val().trim(),
         role: $("#role").val().trim(),
@@ -72,11 +75,13 @@
         forcePoints: $("#force-points").val().trim()
       };
 
-      // Question: What does this code do??
+      //Ajax post request: post the newCharacter object to the "/api/new" route
+      //"/api/new" method located in server.js
       $.post("/api/new", newCharacter)
       .done(function(data) {
-        console.log(data);
-        alert("Adding character...");
+        //When the Ajax call has successfully completed...
+        console.log(data); //log the response data
+        alert("Adding character..."); //Alert the user
       });
     });
   </script>
